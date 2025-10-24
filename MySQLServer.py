@@ -1,10 +1,10 @@
-import mysql.connector as mysql_connect
+import mysql.connector 
 from mysql.connector import Error
 
 def create_database(): 
     try:
         
-        mysql_db = mysql_connect.connect(
+        mysql_db = mysql.connector.connect(
             host="localhost",
             user="root", 
             password="sudoAdmin@2025",
