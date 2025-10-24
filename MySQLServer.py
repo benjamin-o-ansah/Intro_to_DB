@@ -12,7 +12,7 @@ def create_database():
         )
         if mysql_db.is_connected():
             my_cursor = mysql_db.cursor()
-            sql_statement = "CREATE DATABASE IF NOT EXISTS bookstore_db;"
+            sql_statement = "CREATE DATABASE IF NOT EXISTS alx_book_store;"
             my_cursor.execute(sql_statement)
             print("'alx_book_store' created successfully!") 
     except Error as e:
