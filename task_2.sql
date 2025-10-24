@@ -10,20 +10,20 @@ USE alx_book_store;
 -- TABLE: AUTHORS
 -- =======================================================
 CREATE TABLE IF NOT EXISTS AUTHORS (
-    AUTHOR_ID INT AUTO_INCREMENT PRIMARY KEY,
-    AUTHOR_NAME VARCHAR(215) NOT NULL
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_name VARCHAR(215) NOT NULL
 );
 
 -- =======================================================
 -- TABLE: BOOKS
 -- =======================================================
 CREATE TABLE IF NOT EXISTS BOOKS (
-    BOOK_ID INT AUTO_INCREMENT PRIMARY KEY,
-    TITLE VARCHAR(130) NOT NULL,
-    AUTHOR_ID INT NOT NULL,
-    PRICE DOUBLE NOT NULL,
-    PUBLICATION_DATE DATE,
-    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(130) NOT NULL,
+    author_id  INT NOT NULL,
+    price DOUBLE NOT NULL,
+    publication_date DATE,
+    FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
@@ -32,20 +32,20 @@ CREATE TABLE IF NOT EXISTS BOOKS (
 -- TABLE: CUSTOMERS
 -- =======================================================
 CREATE TABLE IF NOT EXISTS CUSTOMERS (
-    CUSTOMER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    CUSTOMER_NAME VARCHAR(215) NOT NULL,
-    EMAIL VARCHAR(215) UNIQUE,
-    ADDRESS TEXT
+   customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(215) NOT NULL,
+    email VARCHAR(215) UNIQUE,
+    address TEXT
 );
 
 -- =======================================================
 -- TABLE: ORDERS
 -- =======================================================
 CREATE TABLE IF NOT EXISTS ORDERS (
-    ORDER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    CUSTOMER_ID INT NOT NULL,
-    ORDER_DATE DATE NOT NULL,
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+ order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
@@ -54,14 +54,14 @@ CREATE TABLE IF NOT EXISTS ORDERS (
 -- TABLE: ORDER_DETAILS
 -- =======================================================
 CREATE TABLE IF NOT EXISTS ORDER_DETAILS (
-    ORDERDETAILID INT AUTO_INCREMENT PRIMARY KEY,
-    ORDER_ID INT NOT NULL,
-    BOOK_ID INT NOT NULL,
-    QUANTITY DOUBLE NOT NULL CHECK (QUANTITY > 0),
-    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID)
+    orderdetailid INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity DOUBLE NOT NULL CHECK (quantity > 0),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
